@@ -1,0 +1,32 @@
+//For encoding and decoding
+import java.util.*;
+import java.util.Base64.Encoder;
+import java.io.*;
+public class Encode_Decode_File {
+    public static void main(String[] args) {
+        try{
+            
+File f=new File("C:\\Users\\LENOVO\\Desktop\\Javalearning\\Encode.txt");
+f.createNewFile();
+Scanner sc =new Scanner(f);
+FileWriter F=new FileWriter("C:\\Users\\LENOVO\\Desktop\\Javalearning\\Encode.txt");
+            F.write("Two cup chai please ");
+            F.close();
+            while (sc.hasNextLine()) {
+                //Encoding of the file  content
+                Base64.Encoder e= Base64.getEncoder();
+                String s=e.encodeToString(sc.nextLine().getBytes())  ;
+                System.out.println("The encrypted message : "+s);
+                
+                //Decoding of the file content 
+                Base64.Decoder d=Base64.getDecoder();
+                String s1=new String(d.decode(s));
+                System.out.println("The Decrypted message :"+s1);
+            }
+        
+        }
+        catch(Exception e){
+            System.out.println("Some thing is wrong in code ");
+        }
+    }
+}
